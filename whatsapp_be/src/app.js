@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
 import fileUpload from "express-fileupload";
+import routes from "./routes/index.js";
 
 const app = express();
 
@@ -45,6 +46,9 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
+//api v1 routes
+app.use("/api/v1", routes);
 
 app.use(async (req, res, next) => {
   next(createHttpError.NotFound("This route does not exist."));
